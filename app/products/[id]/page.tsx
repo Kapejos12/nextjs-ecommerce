@@ -65,7 +65,7 @@ async function getRelatedProducts(category: string): Promise<Product[]> {
     next: { revalidate: 600 }
   });
   const products = await res.json();
-  return products.slice(0, 3);
+  return products.products.slice(0, 3);
 }
 
 // Related Products Component
