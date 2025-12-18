@@ -362,7 +362,7 @@ export async function generateStaticParams() {
   const products = await fetch('https://dummyjson.com/products')
     .then(res => res.json());
 
-  return products.map((product: Product) => ({
+  return products.products.map((product: Product) => ({
     id: product.id.toString(),
   }));
 }
