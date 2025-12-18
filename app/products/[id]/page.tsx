@@ -60,7 +60,7 @@ async function getProduct(id: string): Promise<Product | null> {
 
 // Pobierz powiązane produkty
 async function getRelatedProducts(category: string): Promise<Product[]> {
-  const res = await fetch(`https://fakestoreapi.com/products/category/${category}`, {
+  const res = await fetch(`https://dummyjson.com/products/category/${category}`, {
     next: { revalidate: 600 }
   });
   const products = await res.json();
@@ -358,7 +358,7 @@ export default async function ProductPage({
 
 // Generate Static Params
 export async function generateStaticParams() {
-  const products = await fetch('https://fakestoreapi.com/products')
+  const products = await fetch('https://dummyjson.com/products')
     .then(res => res.json());
 
   return products.map((product: Product) => ({
