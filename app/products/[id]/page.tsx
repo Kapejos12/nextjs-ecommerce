@@ -2,6 +2,7 @@
 // app/products/[id]/page.tsx
 // Dynamic Product Page with Material UI v6
 
+
 import { notFound } from 'next/navigation';
 import { Suspense } from 'react';
 import Grid from '@mui/material/Grid';
@@ -37,7 +38,7 @@ interface Product {
   price: number;
   description: string;
   category: string;
-  image: string;
+  images: string;
   rating: {
     rate: number;
     count: number;
@@ -48,7 +49,7 @@ interface Product {
 async function getProduct(id: string): Promise<Product | null> {
   try {
     const res = await fetch(`https://dummyjson.com/products/${id}`, {
-      next: { revalidate: 300 }
+      next: { revalidate: 60 }
     });
     
     if (!res.ok) return null;
@@ -100,7 +101,7 @@ async function RelatedProducts({ category }: { category: string }) {
                   }}
                 >
                   <img 
-                    src={product.image} 
+                    src={product.images} 
                     alt={product.title}
                     style={{ 
                       maxHeight: '100%', 
@@ -224,7 +225,7 @@ export default async function ProductPage({
               }}
             >
               <img 
-                src={product.image} 
+                src={product.images} 
                 alt={product.title}
                 style={{ 
                   maxHeight: 400, 
@@ -387,7 +388,7 @@ export async function generateMetadata({
     openGraph: {
       title: product.title,
       description: product.description,
-      images: [product.image],
+      images: [product.images],
     },
   };
 }
