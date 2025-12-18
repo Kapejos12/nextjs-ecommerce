@@ -47,7 +47,7 @@ interface Product {
 // Pobierz produkt
 async function getProduct(id: string): Promise<Product | null> {
   try {
-    const res = await fetch(`https://fakestoreapi.com/products/${id}`, {
+    const res = await fetch(`https://dummyjson.com/products/${id}`, {
       next: { revalidate: 300 }
     });
     
